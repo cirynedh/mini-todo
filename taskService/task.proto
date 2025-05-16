@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package task;
+
+message Task {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string status = 4;
+}
+
+message GetTaskRequest {
+  string task_id = 1;
+}
+
+message GetTaskResponse {
+  Task task = 1;
+}
+
+message SearchTasksRequest {
+  string query = 1;
+}
+
+message SearchTasksResponse {
+  repeated Task tasks = 1;
+}
+
+service TaskService {
+  rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+  rpc SearchTasks(SearchTasksRequest) returns (SearchTasksResponse);
+}
